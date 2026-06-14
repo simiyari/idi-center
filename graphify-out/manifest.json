@@ -1,0 +1,82 @@
+{
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\.graphify_detect.json": {
+    "mtime": 1781340055.1943047,
+    "ast_hash": "9001bd2bfbaba4d449524b6e7604af2d",
+    "semantic_hash": "9001bd2bfbaba4d449524b6e7604af2d"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\app\\layout.tsx": {
+    "mtime": 1781339416.3229408,
+    "ast_hash": "94c34ef68b3949a75807a0211ec2273c",
+    "semantic_hash": "94c34ef68b3949a75807a0211ec2273c"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\app\\page.tsx": {
+    "mtime": 1781339416.3289402,
+    "ast_hash": "1e489b26bb597dc97f8d44954dd042da",
+    "semantic_hash": "1e489b26bb597dc97f8d44954dd042da"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\eslint.config.mjs": {
+    "mtime": 1781339416.1549418,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\next.config.ts": {
+    "mtime": 1781339416.2839398,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": "9b77af189a21a7a64e4bd7a426f64176"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\package.json": {
+    "mtime": 1781339619.9025857,
+    "ast_hash": "4e185bb4ffcc815b7cf44c2d09144438",
+    "semantic_hash": "4e185bb4ffcc815b7cf44c2d09144438"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\postcss.config.mjs": {
+    "mtime": 1781339416.186942,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\tsconfig.json": {
+    "mtime": 1781339619.9015863,
+    "ast_hash": "02fc19ad21338c2ab820a70136310db4",
+    "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\AGENTS.md": {
+    "mtime": 1781339649.1534188,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\CLAUDE.md": {
+    "mtime": 1781339649.1544158,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\README.md": {
+    "mtime": 1781339416.1309419,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\public\\file.svg": {
+    "mtime": 1781339416.1989398,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\public\\globe.svg": {
+    "mtime": 1781339416.2139392,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\public\\next.svg": {
+    "mtime": 1781339416.2279403,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\public\\vercel.svg": {
+    "mtime": 1781339416.2409422,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "C:\\Users\\Sepehr\\Desktop\\idi-center\\public\\window.svg": {
+    "mtime": 1781339416.2529376,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

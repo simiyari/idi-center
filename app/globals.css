@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* IDI brand theme */
+:root {
+  /* IDI brand palette: black canvas, white type, electric-blue primary accent,
+     lime-green secondary accent (badges / highlights). */
+  --background: #000000;
+  --surface: #111111;
+  --surface-alt: #1C1C1C;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #777777;
+  --accent: #0708FA; /* IDI reference blue */
+  --accent-warm: #AEE619;
+  --border: #262626;
+  --border-strong: #404040;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-warm: var(--accent-warm);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --font-sans: var(--font-vazir);
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-vazir), system-ui, sans-serif;
+}
