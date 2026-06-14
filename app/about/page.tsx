@@ -162,43 +162,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ۵. CTA */}
-      <section className="relative">
-        <Image
-          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80"
-          alt="ثبت‌نام در IDI CENTER"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-24 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            آماده‌اید مسیر حرفه‌ای‌تان را آغاز کنید؟
-          </h2>
-          <p className="max-w-xl text-lg text-white/80">
-            برای انتخاب دوره‌ی مناسب یا دریافت مشاوره‌ی تخصصی، همین امروز با ما در
-            ارتباط باشید.
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/courses"
-              className="bg-accent px-8 py-3 text-base font-semibold text-white shadow-[4px_4px_0_0_rgba(0,0,0,0.7)] transition-opacity hover:opacity-90"
-            >
-              مشاهده دوره‌ها
-            </Link>
-            <a
-              href="tel:+982112345678"
-              className="bg-neutral-200 px-8 py-3 text-base font-semibold text-neutral-900 shadow-[4px_4px_0_0_rgba(0,0,0,0.7)] transition-opacity hover:opacity-90"
-            >
-              تماس برای مشاوره
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ۶. تماس و آدرس */}
-      <section className="bg-background">
+      {/* ۵. تماس و آدرس */}
+      <section className="bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="mb-12 text-center">
             <p className="mb-2 text-sm font-semibold text-accent-warm">
@@ -211,7 +176,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2">
             {/* اطلاعات تماس */}
-            <div className="flex flex-col gap-6 border border-border bg-surface p-8">
+            <div className="flex flex-col gap-6 border border-border bg-background p-8">
               <div className="flex items-start gap-4">
                 <MapPin
                   className="mt-0.5 shrink-0 text-accent-warm"
@@ -297,7 +262,7 @@ export default function AboutPage() {
             </div>
 
             {/* نقشه‌ی گوگل */}
-            <div className="relative min-h-[22rem] overflow-hidden border border-border">
+            <div className="relative min-h-[22rem] overflow-hidden border border-border bg-background">
               <iframe
                 src={mapEmbedSrc}
                 title="موقعیت IDI CENTER روی نقشه"
@@ -307,6 +272,41 @@ export default function AboutPage() {
                 className="absolute inset-0 h-full w-full"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ۶. CTA */}
+      <section className="relative">
+        <Image
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80"
+          alt="ثبت‌نام در IDI CENTER"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-24 text-center">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            آماده‌اید مسیر حرفه‌ای‌تان را آغاز کنید؟
+          </h2>
+          <p className="max-w-xl text-lg text-white/80">
+            برای انتخاب دوره‌ی مناسب یا دریافت مشاوره‌ی تخصصی، همین امروز با ما در
+            ارتباط باشید.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/courses"
+              className="bg-accent px-8 py-3 text-base font-semibold text-white shadow-[4px_4px_0_0_rgba(0,0,0,0.7)] transition-opacity hover:opacity-90"
+            >
+              مشاهده دوره‌ها
+            </Link>
+            <a
+              href="tel:+982188123456"
+              className="bg-neutral-200 px-8 py-3 text-base font-semibold text-neutral-900 shadow-[4px_4px_0_0_rgba(0,0,0,0.7)] transition-opacity hover:opacity-90"
+            >
+              تماس برای مشاوره
+            </a>
           </div>
         </div>
       </section>

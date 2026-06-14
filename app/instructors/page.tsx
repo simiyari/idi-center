@@ -74,7 +74,7 @@ export default function InstructorsPage() {
                   alt={person.name}
                   fill
                   sizes="112px"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-transform duration-300 will-change-transform transform-gpu backface-hidden group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-col gap-1">

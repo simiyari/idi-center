@@ -4,6 +4,7 @@ import FaqItem from "./components/FaqItem";
 
 const courses = [
   {
+    slug: "modern-interior-principles",
     title: "اصول طراحی داخلی مدرن",
     instructor: "استاد مریم رضایی",
     type: "حضوری",
@@ -12,6 +13,7 @@ const courses = [
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
   },
   {
+    slug: "interior-lighting",
     title: "نورپردازی در فضای داخلی",
     instructor: "استاد علی محمدی",
     type: "آنلاین",
@@ -20,6 +22,7 @@ const courses = [
       "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80",
   },
   {
+    slug: "materials-and-decoration",
     title: "متریال‌شناسی و دکوراسیون",
     instructor: "استاد سارا کریمی",
     type: "حضوری",
@@ -80,18 +83,21 @@ const onlinePerks = [
 
 const instructors = [
   {
+    id: "maryam-rezaei",
     name: "مریم رضایی",
     specialty: "طراحی داخلی مسکونی",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80",
   },
   {
+    id: "ali-mohammadi",
     name: "علی محمدی",
     specialty: "معماری داخلی و نورپردازی",
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80",
   },
   {
+    id: "sara-karimi",
     name: "سارا کریمی",
     specialty: "دکوراسیون و متریال",
     avatar:
@@ -235,22 +241,28 @@ export default function Home() {
 
       {/* ۳. دوره‌های ویژه */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="mb-12 text-center text-3xl font-bold text-text-primary">
-          دوره‌های برگزیده
-        </h2>
+        <div className="mb-12 text-center">
+          <p className="mb-2 text-sm font-semibold text-accent-warm">
+            آموزش تخصصی
+          </p>
+          <h2 className="text-3xl font-bold text-text-primary">
+            دوره‌های برگزیده
+          </h2>
+        </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => (
-            <article
-              key={course.title}
-              className="overflow-hidden border border-border bg-surface transition-shadow hover:shadow-lg"
+            <Link
+              key={course.slug}
+              href={`/courses/${course.slug}`}
+              className="group flex flex-col overflow-hidden border border-border bg-surface transition-shadow hover:shadow-lg"
             >
-              <div className="relative aspect-[4/3] w-full">
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={course.image}
                   alt={course.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <span
                   className={`absolute right-3 top-3 px-3 py-1 text-xs font-semibold ${
@@ -273,7 +285,7 @@ export default function Home() {
                   {course.price}
                 </p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
         <div className="mt-12 text-center">
@@ -412,16 +424,22 @@ export default function Home() {
       </section>
 
       {/* ۶. اساتید برتر */}
-      <section className="bg-surface-alt">
+      <section className="bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="mb-12 text-center text-3xl font-bold text-text-primary">
-            اساتید IDI
-          </h2>
+          <div className="mb-12 text-center">
+            <p className="mb-2 text-sm font-semibold text-accent-warm">
+              تیم ما
+            </p>
+            <h2 className="text-3xl font-bold text-text-primary">
+              اساتید IDI
+            </h2>
+          </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             {instructors.map((person) => (
-              <div
-                key={person.name}
-                className="flex flex-col items-center gap-4 border border-border bg-background p-8 text-center"
+              <Link
+                key={person.id}
+                href={`/instructors/${person.id}`}
+                className="group flex flex-col items-center gap-4 border border-border bg-background p-8 text-center transition-shadow hover:shadow-lg"
               >
                 <div className="relative h-28 w-28 overflow-hidden rounded-full border border-border-strong">
                   <Image
@@ -429,7 +447,7 @@ export default function Home() {
                     alt={person.name}
                     fill
                     sizes="112px"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 will-change-transform transform-gpu backface-hidden group-hover:scale-105"
                   />
                 </div>
                 <h3 className="text-lg font-semibold text-text-primary">
@@ -438,7 +456,7 @@ export default function Home() {
                 <p className="text-sm text-text-secondary">
                   {person.specialty}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="mt-12 text-center">

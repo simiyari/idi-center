@@ -64,6 +64,12 @@ export default function Header() {
   }, []);
 
   // keep the bar visible while the mobile menu is open
+  // آیا این لینکِ نوار، صفحه‌ی فعلی است؟ (تا خط آبی زیر آیتم جاری بماند)
+  const isActive = (href: string) =>
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname.startsWith(`${href}/`);
+
   const isHidden = hidden && !open;
 
   return (
@@ -85,16 +91,24 @@ export default function Header() {
         <div className="hidden items-center gap-8 md:flex">
           <nav>
             <ul className="flex items-center gap-6 text-sm font-medium">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="relative text-text-secondary transition-colors after:absolute after:-bottom-1.5 after:-left-2 after:-right-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:content-[''] hover:text-text-primary hover:after:scale-x-100"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`relative transition-colors after:absolute after:-bottom-1.5 after:-left-2 after:-right-2 after:h-0.5 after:origin-left after:bg-accent after:transition-transform after:duration-300 after:content-[''] ${
+                        active
+                          ? "text-text-primary after:scale-x-100"
+                          : "text-text-secondary after:scale-x-0 hover:text-text-primary hover:after:scale-x-100"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
           <Link
@@ -140,17 +154,29 @@ export default function Header() {
         }`}
       >
         <ul className="flex flex-col px-6 py-2">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-base font-medium text-text-secondary transition-colors hover:text-text-primary"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`flex items-center gap-2 py-3 text-base font-medium transition-colors ${
+                    active
+                      ? "text-text-primary"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
+                >
+                  <span
+                    className={`h-4 w-0.5 ${active ? "bg-accent" : "bg-transparent"}`}
+                    aria-hidden="true"
+                  />
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <div className="px-6 pb-4 pt-1">
           <Link
