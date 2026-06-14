@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import jalaali from "jalaali-js";
 
-// IDI CENTER was founded in Jalali year 1395 (≈ 10 years before 1405/2026).
+// IDI CENTER was founded in Jalali year 1390 (≈ 15 years before 1405/2026).
 // The "years active" stat is derived from this so it rolls over on its own
 // each Persian new year — no rebuild needed.
-const FOUNDING_JALALI_YEAR = 1395;
+const FOUNDING_JALALI_YEAR = 1390;
 
 function yearsActive() {
   const now = new Date();
