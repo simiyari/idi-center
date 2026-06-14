@@ -1,36 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import FaqItem from "./components/FaqItem";
+import YearsActive from "./components/YearsActive";
+import InstructorAvatar from "./components/InstructorAvatar";
+import { courses } from "./courses/data";
+import { instructors } from "./instructors/data";
 
-const courses = [
-  {
-    slug: "modern-interior-principles",
-    title: "اصول طراحی داخلی مدرن",
-    instructor: "استاد مریم رضایی",
-    type: "حضوری",
-    price: "۴٬۸۰۰٬۰۰۰ تومان",
-    image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
-  },
-  {
-    slug: "interior-lighting",
-    title: "نورپردازی در فضای داخلی",
-    instructor: "استاد علی محمدی",
-    type: "آنلاین",
-    price: "۳٬۲۰۰٬۰۰۰ تومان",
-    image:
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80",
-  },
-  {
-    slug: "materials-and-decoration",
-    title: "متریال‌شناسی و دکوراسیون",
-    instructor: "استاد سارا کریمی",
-    type: "حضوری",
-    price: "۵٬۵۰۰٬۰۰۰ تومان",
-    image:
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&q=80",
-  },
-];
+// A curated mix for the "دوره‌های برگزیده" section, drawn from the real catalogue.
+const featuredSlugs = ["mantaghe", "circle-markaz", "object-in-cast"];
+const featuredCourses = featuredSlugs
+  .map((slug) => courses.find((c) => c.slug === slug))
+  .filter((c): c is (typeof courses)[number] => c !== undefined);
 
 const features = [
   {
@@ -81,34 +61,14 @@ const onlinePerks = [
   "انعطاف زمانی و صرفه‌جویی در رفت‌وآمد",
 ];
 
-const instructors = [
-  {
-    id: "maryam-rezaei",
-    name: "مریم رضایی",
-    specialty: "طراحی داخلی مسکونی",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80",
-  },
-  {
-    id: "ali-mohammadi",
-    name: "علی محمدی",
-    specialty: "معماری داخلی و نورپردازی",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80",
-  },
-  {
-    id: "sara-karimi",
-    name: "سارا کریمی",
-    specialty: "دکوراسیون و متریال",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
-  },
-];
+// First three of the real instructors for the home "اساتید IDI" section.
+const featuredInstructors = instructors.slice(0, 3);
 
-const stats = [
-  { value: "+۲٬۵۰۰", label: "دانشجو" },
-  { value: "+۱۲۰", label: "دوره آموزشی" },
-  { value: "۱۵", label: "سال فعالیت" },
+// "دوره آموزشی" is derived from the real catalogue length; "سال فعالیت" is live.
+const stats: { value: React.ReactNode; label: string }[] = [
+  { value: "+۲٬۰۰۰", label: "دانشجو" },
+  { value: courses.length.toLocaleString("fa-IR"), label: "دوره آموزشی" },
+  { value: <YearsActive />, label: "سال فعالیت" },
 ];
 
 const testimonials = [
@@ -250,7 +210,7 @@ export default function Home() {
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
+          {featuredCourses.map((course) => (
             <Link
               key={course.slug}
               href={`/courses/${course.slug}`}
@@ -279,10 +239,10 @@ export default function Home() {
                   {course.title}
                 </h3>
                 <p className="text-sm text-text-secondary">
-                  {course.instructor}
+                  {course.instructor ?? course.group}
                 </p>
                 <p className="mt-1 text-base font-bold text-accent-warm">
-                  {course.price}
+                  {course.price.toLocaleString("fa-IR")} تومان
                 </p>
               </div>
             </Link>
@@ -435,17 +395,16 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-            {instructors.map((person) => (
+            {featuredInstructors.map((person) => (
               <Link
                 key={person.id}
                 href={`/instructors/${person.id}`}
                 className="group flex flex-col items-center gap-4 border border-border bg-background p-8 text-center transition-shadow hover:shadow-lg"
               >
                 <div className="relative h-28 w-28 overflow-hidden rounded-full border border-border-strong">
-                  <Image
+                  <InstructorAvatar
+                    name={person.name}
                     src={person.avatar}
-                    alt={person.name}
-                    fill
                     sizes="112px"
                     className="object-cover transition-transform duration-300 will-change-transform transform-gpu backface-hidden group-hover:scale-105"
                   />
@@ -453,9 +412,7 @@ export default function Home() {
                 <h3 className="text-lg font-semibold text-text-primary">
                   {person.name}
                 </h3>
-                <p className="text-sm text-text-secondary">
-                  {person.specialty}
-                </p>
+                <p className="text-sm text-text-secondary">{person.title}</p>
               </Link>
             ))}
           </div>
@@ -475,7 +432,10 @@ export default function Home() {
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 px-6 py-16 text-center sm:grid-cols-3">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">
-              <span className="text-4xl font-bold text-accent-warm">
+              <span
+                className="text-4xl font-bold text-accent-warm"
+                suppressHydrationWarning
+              >
                 {stat.value}
               </span>
               <span className="text-base text-white/80">{stat.label}</span>

@@ -4,92 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type CourseType = "حضوری" | "آنلاین";
-
-type Course = {
-  slug: string;
-  title: string;
-  instructor: string;
-  type: CourseType;
-  category: string;
-  level: string;
-  price: number;
-  image: string;
-};
-
-const allCourses: Course[] = [
-  {
-    slug: "modern-interior-principles",
-    title: "اصول طراحی داخلی مدرن",
-    instructor: "استاد مریم رضایی",
-    type: "حضوری",
-    category: "طراحی داخلی",
-    level: "مقدماتی",
-    price: 4800000,
-    image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
-  },
-  {
-    slug: "interior-lighting",
-    title: "نورپردازی در فضای داخلی",
-    instructor: "استاد علی محمدی",
-    type: "آنلاین",
-    category: "معماری داخلی",
-    level: "متوسط",
-    price: 3200000,
-    image:
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80",
-  },
-  {
-    slug: "materials-and-decoration",
-    title: "متریال‌شناسی و دکوراسیون",
-    instructor: "استاد سارا کریمی",
-    type: "حضوری",
-    category: "طراحی داخلی",
-    level: "متوسط",
-    price: 5500000,
-    image:
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&q=80",
-  },
-  {
-    slug: "autocad-3dsmax",
-    title: "طراحی با AutoCAD و 3ds Max",
-    instructor: "استاد رضا احمدی",
-    type: "آنلاین",
-    category: "نرم‌افزار",
-    level: "مقدماتی",
-    price: 2900000,
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80",
-  },
-  {
-    slug: "advanced-interior-architecture",
-    title: "معماری داخلی پیشرفته",
-    instructor: "استاد مریم رضایی",
-    type: "حضوری",
-    category: "معماری داخلی",
-    level: "پیشرفته",
-    price: 6800000,
-    image:
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80",
-  },
-  {
-    slug: "sketchup-3d-modeling",
-    title: "مدل‌سازی سه‌بعدی با SketchUp",
-    instructor: "استاد نگار حسینی",
-    type: "آنلاین",
-    category: "نرم‌افزار",
-    level: "متوسط",
-    price: 3500000,
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-  },
-];
+import { courses, courseGroups, type Course, type CourseType } from "./data";
 
 const typeOptions = ["همه", "حضوری", "آنلاین"];
-const categoryOptions = ["همه", "معماری داخلی", "طراحی داخلی", "نرم‌افزار"];
-const levelOptions = ["همه", "مقدماتی", "متوسط", "پیشرفته"];
+const groupOptions = ["همه", ...courseGroups];
 
 // Maps the `?type=` query param (set by the home page CTAs) to a filter value.
 const typeFromParam: Record<string, string> = {
@@ -185,34 +103,39 @@ function typeBadgeClass(type: CourseType) {
     : "bg-accent text-white";
 }
 
+// Shown on the card under the title: the instructor, or the course's first
+// spec row (e.g. «کارگاه حضوری») for workshops that list no instructor.
+function cardSubtitle(course: Course) {
+  if (course.instructor) return course.instructor;
+  return course.details[0]?.value ?? "";
+}
+
 export default function CoursesClient() {
   const searchParams = useSearchParams();
-  const initialType = typeFromParam[searchParams.get("type") ?? ""] ?? "همه";
 
-  const [type, setType] = useState(initialType);
-  const [category, setCategory] = useState("همه");
-  const [level, setLevel] = useState("همه");
+  const [type, setType] = useState(
+    typeFromParam[searchParams.get("type") ?? ""] ?? "همه"
+  );
+  const [group, setGroup] = useState("همه");
   const [open, setOpen] = useState(false);
 
-  // Keep the type filter in sync if the user navigates here with a different
+  // Keep the type filter in sync when navigating here with a different
   // `?type=` (e.g. from the "حضوری" then "آنلاین" home page buttons).
   useEffect(() => {
     setType(typeFromParam[searchParams.get("type") ?? ""] ?? "همه");
   }, [searchParams]);
 
-  const filtered = allCourses.filter(
+  const filtered = courses.filter(
     (c) =>
       (type === "همه" || c.type === type) &&
-      (category === "همه" || c.category === category) &&
-      (level === "همه" || c.level === level)
+      (group === "همه" || c.group === group)
   );
 
-  const activeCount = [type, category, level].filter((v) => v !== "همه").length;
+  const activeCount = [type, group].filter((v) => v !== "همه").length;
 
   const resetFilters = () => {
     setType("همه");
-    setCategory("همه");
-    setLevel("همه");
+    setGroup("همه");
   };
 
   // close on Escape + lock body scroll while the drawer is open
@@ -237,8 +160,8 @@ export default function CoursesClient() {
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">
           <h1 className="text-4xl font-bold text-text-primary">دوره‌ها</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-text-secondary">
-            مجموعه دوره‌های تخصصی IDI در حوزه معماری داخلی، طراحی داخلی و
-            نرم‌افزارهای تخصصی — به‌صورت حضوری و آنلاین، زیر نظر اساتید مجرب.
+            مجموعه دوره‌های تخصصی IDI در حوزه طراحی و معماری داخلی — کارگاه‌های
+            رنگ و متریال، کلاس‌های حضوری و دوره‌های آنلاین، زیر نظر اساتید مجرب.
           </p>
         </div>
       </section>
@@ -295,7 +218,7 @@ export default function CoursesClient() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  {/* badges overlaid on the image — simple sharp rectangles, top corners */}
+                  {/* badges overlaid on the image — type, plus status when set */}
                   <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
                     <span
                       className={`px-3 py-1 text-xs font-semibold ${typeBadgeClass(
@@ -304,9 +227,11 @@ export default function CoursesClient() {
                     >
                       {course.type}
                     </span>
-                    <span className="bg-black/55 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                      {course.level}
-                    </span>
+                    {course.status && (
+                      <span className="bg-black/55 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                        {course.status}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
@@ -314,7 +239,7 @@ export default function CoursesClient() {
                     {course.title}
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary">
-                    {course.instructor}
+                    {cardSubtitle(course)}
                   </p>
                   <div className="mt-auto pt-4">
                     <p className="text-base font-bold text-accent-warm">
@@ -386,15 +311,9 @@ export default function CoursesClient() {
           />
           <FilterGroup
             label="دسته‌بندی"
-            options={categoryOptions}
-            value={category}
-            onChange={setCategory}
-          />
-          <FilterGroup
-            label="سطح"
-            options={levelOptions}
-            value={level}
-            onChange={setLevel}
+            options={groupOptions}
+            value={group}
+            onChange={setGroup}
           />
         </div>
 

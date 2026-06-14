@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import YearsActive from "@/app/components/YearsActive";
+import { courses } from "@/app/courses/data";
+import { instructors } from "@/app/instructors/data";
 import {
   GraduationCap,
   Users,
@@ -41,11 +44,13 @@ const values = [
   },
 ];
 
-const stats = [
-  { value: "۱۵", label: "سال فعالیت" },
-  { value: "+۲٬۵۰۰", label: "دانشجو" },
-  { value: "+۱۲۰", label: "دوره آموزشی" },
-  { value: "۲۴", label: "استاد" },
+// "دوره آموزشی" and "استاد" are derived from the real catalogue and instructor
+// list; "سال فعالیت" is live.
+const stats: { value: React.ReactNode; label: string }[] = [
+  { value: <YearsActive />, label: "سال فعالیت" },
+  { value: "+۲٬۰۰۰", label: "دانشجو" },
+  { value: courses.length.toLocaleString("fa-IR"), label: "دوره آموزشی" },
+  { value: instructors.length.toLocaleString("fa-IR"), label: "استاد" },
 ];
 
 const contact = {
@@ -129,11 +134,11 @@ export default function AboutPage() {
               آنچه IDI را متفاوت می‌کند
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {values.map(({ Icon, title, desc }) => (
               <div
                 key={title}
-                className="flex flex-col gap-4 border border-border bg-surface p-6"
+                className="flex flex-col gap-3 border border-border bg-surface p-5 sm:gap-4 sm:p-6"
               >
                 <span className="flex h-12 w-12 items-center justify-center bg-accent text-white">
                   <Icon size={24} strokeWidth={2} aria-hidden="true" />
@@ -150,10 +155,13 @@ export default function AboutPage() {
 
       {/* ۴. آمار */}
       <section className="bg-accent">
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 px-6 py-16 text-center sm:grid-cols-4">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 px-6 py-16 text-center sm:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">
-              <span className="text-4xl font-bold text-accent-warm">
+              <span
+                className="text-4xl font-bold text-accent-warm"
+                suppressHydrationWarning
+              >
                 {stat.value}
               </span>
               <span className="text-base text-white/80">{stat.label}</span>
