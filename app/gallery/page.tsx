@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type Category = "معماری داخلی" | "طراحی داخلی";
+type Category = "مسکونی" | "تجاری" | "پالت‌چینی";
 
 type Project = {
   id: number;
@@ -16,117 +16,125 @@ type Project = {
 };
 
 const projects: Project[] = [
+  // ───────────── مسکونی ─────────────
   {
     id: 1,
-    title: "آشپزخانه‌ی مدرن مینیمال",
+    title: "نشیمن مدرن",
     student: "سارا محمدی",
-    category: "طراحی داخلی",
+    category: "مسکونی",
     image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&q=80",
-    ratio: { w: 3, h: 4 },
-  },
-  {
-    id: 2,
-    title: "بازطراحی نشیمن معاصر",
-    student: "رضا کریمی",
-    category: "طراحی داخلی",
-    image:
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1000&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000&q=80",
     ratio: { w: 4, h: 3 },
   },
   {
-    id: 3,
-    title: "فضای کار اشتراکی",
-    student: "نگار حسینی",
-    category: "معماری داخلی",
+    id: 2,
+    title: "آشپزخانه‌ی مینیمال",
+    student: "رضا کریمی",
+    category: "مسکونی",
     image:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1000&q=80",
-    ratio: { w: 1, h: 1 },
+      "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1000&q=80",
+    ratio: { w: 3, h: 4 },
   },
   {
-    id: 4,
-    title: "اتاق خواب مستر",
+    id: 3,
+    title: "اتاق خواب آرام",
     student: "علی رضایی",
-    category: "طراحی داخلی",
+    category: "مسکونی",
     image:
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1000&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1000&q=80",
     ratio: { w: 4, h: 5 },
   },
   {
-    id: 5,
-    title: "لابی هتل بوتیک",
-    student: "مریم احمدی",
-    category: "معماری داخلی",
+    id: 4,
+    title: "سرویس بهداشتی مدرن",
+    student: "لیلا کاظمی",
+    category: "مسکونی",
     image:
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1000&q=80",
-    ratio: { w: 3, h: 2 },
+      "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1000&q=80",
+    ratio: { w: 3, h: 4 },
+  },
+  // ───────────── تجاری ─────────────
+  {
+    id: 5,
+    title: "کافه‌ی دنج",
+    student: "امیر تهرانی",
+    category: "تجاری",
+    image:
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1000&q=80",
+    ratio: { w: 4, h: 3 },
   },
   {
     id: 6,
-    title: "کافه‌ی صنعتی",
-    student: "امیر تهرانی",
-    category: "معماری داخلی",
+    title: "رستوران مدرن",
+    student: "بهرام یوسفی",
+    category: "تجاری",
     image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80",
-    ratio: { w: 5, h: 4 },
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&q=80",
+    ratio: { w: 3, h: 2 },
   },
   {
     id: 7,
-    title: "سرویس بهداشتی مدرن",
-    student: "لیلا کاظمی",
-    category: "طراحی داخلی",
+    title: "هتل بوتیک",
+    student: "مریم احمدی",
+    category: "تجاری",
     image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1000&q=80",
     ratio: { w: 4, h: 3 },
   },
   {
     id: 8,
-    title: "پلان باز آپارتمان",
-    student: "سینا مرادی",
-    category: "معماری داخلی",
+    title: "دفتر کار مدرن",
+    student: "نگار حسینی",
+    category: "تجاری",
     image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000&q=80",
-    ratio: { w: 3, h: 4 },
+      "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&q=80",
+    ratio: { w: 1, h: 1 },
   },
+  // ───────────── پالت‌چینی ─────────────
   {
     id: 9,
-    title: "نورپردازی فضای نشیمن",
+    title: "پالت رنگ و متریال",
     student: "پریسا نوری",
-    category: "طراحی داخلی",
+    category: "پالت‌چینی",
     image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=80",
+      "https://images.unsplash.com/photo-1604871000636-074fa5117945?w=1000&q=80",
     ratio: { w: 1, h: 1 },
   },
   {
     id: 10,
-    title: "ورودی و راه‌پله",
+    title: "مودبورد طراحی",
     student: "کاوه صادقی",
-    category: "معماری داخلی",
+    category: "پالت‌چینی",
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1000&q=80",
+      "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=1000&q=80",
     ratio: { w: 4, h: 5 },
   },
   {
     id: 11,
-    title: "اتاق کودک خلاقانه",
+    title: "بافت و متریال",
     student: "الهام صبوری",
-    category: "طراحی داخلی",
+    category: "پالت‌چینی",
     image:
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1000&q=80",
+      "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=1000&q=80",
     ratio: { w: 3, h: 2 },
   },
   {
     id: 12,
-    title: "رستوران مدرن",
-    student: "بهرام یوسفی",
-    category: "معماری داخلی",
+    title: "ترکیب رنگ و بافت",
+    student: "سینا مرادی",
+    category: "پالت‌چینی",
     image:
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1000&q=80",
+      "https://images.unsplash.com/photo-1620207418302-439b387441b0?w=1000&q=80",
     ratio: { w: 4, h: 3 },
   },
 ];
 
-const categories: ("همه" | Category)[] = ["همه", "معماری داخلی", "طراحی داخلی"];
+const categories: ("همه" | Category)[] = [
+  "همه",
+  "مسکونی",
+  "تجاری",
+  "پالت‌چینی",
+];
 
 function CategoryBadge({ category }: { category: Category }) {
   return (
