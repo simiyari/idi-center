@@ -11,8 +11,25 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "آیدی سنتر | IDI CENTER",
-  description: "مرکز آیدی سنتر",
+  metadataBase: new URL("https://simiyari.github.io/idi-center"),
+  title: "IDI Center | مرکز تخصصی طراحی داخلی",
+  description:
+    "IDI Center؛ مرکز تخصصی آموزش طراحی و معماری داخلی و صاحب اولین کرسی آموزش تخصصی طراحی داخلی در ایران.",
+  openGraph: {
+    title: "IDI Center | مرکز تخصصی طراحی داخلی",
+    description: "مرکز تخصصی آموزش طراحی و معماری داخلی — IDI Center.",
+    siteName: "IDI Center",
+    locale: "fa_IR",
+    type: "website",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=630&fit=crop&q=80",
+        width: 1200,
+        height: 630,
+        alt: "IDI Center — مرکز تخصصی طراحی داخلی",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
