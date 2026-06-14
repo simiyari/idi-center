@@ -10,6 +10,9 @@ export type Instructor = {
   specialties: string[];
   bio: string[];
   avatar?: string;
+  // Real handles can be added per instructor later; until then the profile
+  // page falls back to placeholder links so the icons still show.
+  social?: { instagram?: string; linkedin?: string };
 };
 
 // Temporary gender-matched stock portraits, to be replaced with real photos.
