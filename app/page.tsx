@@ -351,7 +351,7 @@ export default function Home() {
             </ul>
             <div>
               <Link
-                href="/courses"
+                href="/courses?type=in-person"
                 className="inline-block bg-accent px-8 py-3 text-base font-semibold text-white shadow-[4px_4px_0_0_#5c5c5c] transition-opacity hover:opacity-90"
               >
                 دوره‌های حضوری
@@ -401,7 +401,7 @@ export default function Home() {
             </ul>
             <div>
               <Link
-                href="/courses"
+                href="/courses?type=online"
                 className="inline-block bg-accent px-8 py-3 text-base font-semibold text-white shadow-[4px_4px_0_0_#5c5c5c] transition-opacity hover:opacity-90"
               >
                 دوره‌های آنلاین
