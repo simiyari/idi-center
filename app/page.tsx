@@ -206,11 +206,11 @@ export default function Home() {
               یک قدم جلوتر از یک آموزش معمولی
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="flex flex-col gap-4 border border-border bg-background p-6"
+                className="flex flex-col gap-3 border border-border bg-background p-5 sm:gap-4 sm:p-6"
               >
                 <span className="flex h-12 w-12 items-center justify-center bg-accent text-white">
                   <svg
